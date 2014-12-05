@@ -2,7 +2,7 @@
 
 echo "Actualizando"
 apt-get update
-apt-get install -y python-pip python-dev build-essential python-yaml
+apt-get install -y python-pip python-dev build-essential python-yaml git
 
 PIP=$(which pip)
 

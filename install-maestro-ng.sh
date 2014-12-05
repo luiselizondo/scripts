@@ -3,11 +3,14 @@
 echo "Actualizando"
 apt-get update
 apt-get install -y python-pip python-dev build-essential python-yaml
-/usr/bin/pip install --upgrade pip 
-/usr/bin/pip install --upgrade virtualenv 
+
+PIP=$(which pip)
+
+$PIP install --upgrade pip 
+$PIP install --upgrade virtualenv 
 
 echo "Instalando maestro-ng"
-/usr/bin/pip install --upgrade git+git://github.com/signalfuse/maestro-ng
+$PIP install --upgrade git+git://github.com/signalfuse/maestro-ng
 
 MAESTRO_LOCATION=$(which maestro)
 PRIVATE_IP="$(ifconfig eth1 | awk -F ' *|:' '/inet addr/{print $4}')"

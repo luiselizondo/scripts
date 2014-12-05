@@ -5,7 +5,7 @@
 
 # Install Maestro-ng
 
-		curl -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/install-maestro-ng.sh | sh
+		curl -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/install-maestro-ng.sh | bash
 
 # Install Docker on Server and Configure it to talk to Maestro-NG
 

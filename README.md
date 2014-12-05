@@ -9,6 +9,6 @@
 
 # Install Docker on Server and Configure it to talk to Maestro-NG
 
-		curl -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/install-docker.sh | sh 10.132.187.57
+		curl -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/install-docker.sh | bash -s 10.132.187.57
 
 # Install GlusterFS/NFS

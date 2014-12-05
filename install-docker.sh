@@ -1,5 +1,12 @@
 #!/bin/bash
 
+die () {
+    echo >&2 "$@"
+    exit 1
+}
+
+[ "$#" -eq 1 ] || die "first argument is required, $# provided"
+
 curl -sSL https://get.docker.com/ubuntu/ | sh
 
 echo "Configuring Docker"

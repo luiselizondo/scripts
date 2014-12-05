@@ -1,7 +1,5 @@
 #!/bin/bash
 
-MAESTRO_IP = $1
-
 curl -sSL https://get.docker.com/ubuntu/ | sh
 
 echo "Configuring Docker"
@@ -10,7 +8,7 @@ service docker restart
 
 echo "Configuring IP Tables"
 
-iptables -A INPUT -p tcp --dport 2375-s $MAESTRO_IP -j ACCEPT
+iptables -A INPUT -p tcp --dport 2375-s $1 -j ACCEPT
 iptables -A INPUT -p tcp --dport 2375-j DROP
 
 iptables-save

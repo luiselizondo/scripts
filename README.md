@@ -26,3 +26,6 @@
 
 		Correr en uno de los servidores
 		curl -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/install-glusterfs-create-volumes.sh | bash -s FQDN
+
+		Correr en el cliente
+		curl -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/install-glusterfs-client.sh | bash -s IP_DE_NODO_1 IP_DE_NODO_2 FQDN

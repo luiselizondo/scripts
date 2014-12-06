@@ -6,9 +6,9 @@ function installConsulAgent {
 	echo "Installing Consul Agent"
 	
 	JOIN_IP=$1
-	
-	docker run --name consul \ 
-		-h $HOSTNAME \ 
+
+	docker run --name consul \
+		-h $HOSTNAME \
 		-p $PRIVATE_IP:8300:8300 \
 		-p $PRIVATE_IP:8301:8301 \
 		-p $PRIVATE_IP:8301:8301/udp \

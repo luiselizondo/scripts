@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PRIVATE_IP=$(ifconfig eth1 | awk -F ' *|:' '/inet addr/{print $4}')
+
 echo "Installing Docker"
 function installDocker {
 	curl -sSL https://get.docker.com/ubuntu/ | sh
@@ -8,7 +10,6 @@ function installDocker {
 function installConsul {
 	echo "Installing Load Balancer and Service Registry"
 	
-	PRIVATE_IP=$(ifconfig eth1 | awk -F ' *|:' '/inet addr/{print $4}')
 	docker run --name consul -d \
 		-h $HOSTNAME \
 		-v /mnt:/data \
@@ -37,6 +38,11 @@ function installLoadBalancer {
 	echo "Not ready yet"
 }
 
+function using {
+	echo "Using Private IP: $PRIVATE_IP"
+}
+
+using
 installDocker
 installConsul
 installLoadBalancer

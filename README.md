@@ -21,4 +21,8 @@
 
 ### Install GlusterFS/NFS
 
-		curl -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/install-glusterfs-server.sh | bash
+		En cada uno de los servidores correr:
+		curl -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/install-glusterfs-server.sh | bash -s IP_DE_NODO_1 IP_DE_NODO_2 FQDN
+
+		Correr en uno de los servidores
+		curl -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/install-glusterfs-create-volumes.sh | bash -s FQDN

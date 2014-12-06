@@ -6,8 +6,18 @@ function installConsulAgent {
 	echo "Installing Consul Agent"
 	
 	JOIN_IP=$1
-
-	$(docker run progrium/consul cmd:run $PRIVATE_IP::$JOIN_IP -d)
+	
+	docker run --name consul \ 
+		-h $HOSTNAME \ 
+		-p $PRIVATE_IP:8300:8300 \
+		-p $PRIVATE_IP:8301:8301 \
+		-p $PRIVATE_IP:8301:8301/udp \
+		-p $PRIVATE_IP:8302:8302 \
+		-p $PRIVATE_IP:8302:8302/udp \
+		-p $PRIVATE_IP:8400:8400 \
+		-p $PRIVATE_IP:8500:8500 \
+		-p 172.17.42.1:53:53/udp \
+		-d progrium/consul -server -advertise $PRIVATE_IP -join $JOIN_IP
 
 	echo "-------------------------------------------------------------"
 	echo " "

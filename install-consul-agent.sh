@@ -1,6 +1,7 @@
 #!/bin/bash
 
 PRIVATE_IP=$(ifconfig eth1 | awk -F ' *|:' '/inet addr/{print $4}')
+JOIN_IP=$1
 
 die () {
     echo >&2 "$@"
@@ -22,7 +23,7 @@ function installConsulAgent {
 		-p $PRIVATE_IP:8400:8400 \
 		-p $PRIVATE_IP:8500:8500 \
 		-p 172.17.42.1:53:53/udp \
-		-d progrium/consul -server -advertise $PRIVATE_IP -join $1
+		-d progrium/consul -server -advertise $PRIVATE_IP -join $JOIN_IP
 
 	echo "-------------------------------------------------------------"
 	echo " "
@@ -41,7 +42,7 @@ function installRegistrator {
 
 function using {
 	echo "Using Private IP: $PRIVATE_IP"
-	echo "Using Join IP: $1"
+	echo "Using Join IP: $JOIN_IP"
 }
 
 using

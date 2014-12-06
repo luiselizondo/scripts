@@ -20,3 +20,5 @@
 		curl -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/install-consul-agent.sh | bash -s IP_DE_LB
 
 ### Install GlusterFS/NFS
+
+		curl -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/install-glusterfs-server.sh | bash

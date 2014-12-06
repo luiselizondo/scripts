@@ -15,8 +15,8 @@ service docker restart
 
 echo "Configuring IP Tables"
 
-iptables -A INPUT -p tcp --dport 2375-s $1 -j ACCEPT
-iptables -A INPUT -p tcp --dport 2375-j DROP
+iptables -A INPUT -p tcp --dport 2375 -s $1 -j ACCEPT
+iptables -A INPUT -p tcp --dport 2375 -j DROP
 
 iptables-save
 iptables-save > /etc/iptables.rules

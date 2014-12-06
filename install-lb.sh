@@ -34,8 +34,26 @@ function installConsul {
 }
 
 function installLoadBalancer {
-	echo "Installing Load Balancer HAProxy"
-	echo "Not ready yet"
+	echo "Installing Load Balancer Nginx"
+	apt-get install -y nginx
+
+	cp /etc/nginx/sites-enabled/default /etc/nginx/default-disabled
+	rm /etc/nginx/sites-enabled
+}
+
+function installConsulTemplate {
+	echo "Installing Consul Template"
+	cd /tmp
+	wget https://github.com/hashicorp/consul-template/releases/download/v0.3.1/consul-template_0.3.1_linux_amd64.tar.gz
+	tar zxvf consul-template_0.3.1_linux_amd64.tar.gz
+	cd consul-template_0.3.1_linux_amd64
+	mv consul-template /usr/local/bin/consul-template
+	chmod +x /usr/local/bin/consul-template
+	which consul-template
+}
+
+function configureConsulTemplateWithNginx {
+	echo "Visit https://hashicorp.com/blog/introducing-consul-template.html"
 }
 
 function using {
@@ -46,3 +64,5 @@ using
 installDocker
 installConsul
 installLoadBalancer
+installConsulTemplate
+configureConsulTemplateWithNginx

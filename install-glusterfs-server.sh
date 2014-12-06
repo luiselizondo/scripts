@@ -28,18 +28,6 @@ function connect {
 	gluster peer probe gluster01.$FQDN
 }
 
-function createVolume {
-	gluster volume create volume1 replica 1 transport tcp gluster01.$FQDN:/gluster-storage gluster02.$FQDN:/gluster-storage force
-}
-
-function startVolume {
-	gluster volume start volume1
-
-	echo "Volume started"
-}
-
 updateHostsFile
 updateAndInstall
 connect
-createVolume
-startVolume

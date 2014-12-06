@@ -21,7 +21,7 @@ function install {
 	apt-get install -y python-software-properties
 	add-apt-repository ppa:semiosis/ubuntu-glusterfs-3.4
 	apt-get update
-	apt-get install glusterfs-client
+	apt-get install -y glusterfs-client
 }
 
 function mount {

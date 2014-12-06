@@ -2,11 +2,16 @@
 
 PRIVATE_IP=$(ifconfig eth1 | awk -F ' *|:' '/inet addr/{print $4}')
 
+die () {
+    echo >&2 "$@"
+    exit 1
+}
+
+[ "$#" -eq 1 ] || die "first argument is required, $# provided"
+
 function installConsulAgent {
 	echo "Installing Consul Agent"
 	
-	JOIN_IP=$1
-
 	docker run --name consul \
 		-h $HOSTNAME \
 		-p $PRIVATE_IP:8300:8300 \
@@ -17,7 +22,7 @@ function installConsulAgent {
 		-p $PRIVATE_IP:8400:8400 \
 		-p $PRIVATE_IP:8500:8500 \
 		-p 172.17.42.1:53:53/udp \
-		-d progrium/consul -server -advertise $PRIVATE_IP -join $JOIN_IP
+		-d progrium/consul -server -advertise $PRIVATE_IP -join $1
 
 	echo "-------------------------------------------------------------"
 	echo " "
@@ -34,5 +39,11 @@ function installRegistrator {
     -h $HOSTNAME progrium/registrator consul://$PRIVATE_IP:8500
 }
 
+function using {
+	echo "Using Private IP: $PRIVATE_IP"
+	echo "Using Join IP: $1"
+}
+
+using
 installConsulAgent
 installRegistrator

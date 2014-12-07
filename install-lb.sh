@@ -38,7 +38,7 @@ function installLoadBalancer {
 	apt-get install -y nginx
 
 	cp /etc/nginx/sites-enabled/default /etc/nginx/default-disabled
-	rm /etc/nginx/sites-enabled
+	rm -Rf /etc/nginx/sites-enabled
 }
 
 function installConsulTemplate {

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PRIVATE_IP=$(ifconfig eth1 | awk -F ' *|:' '/inet addr/{print $4}')
+PRIVATE_IP=$(ifconfig eth0 | awk -F ' *|:' '/inet addr/{print $4}')
 JOIN_IP=$1
 
 die () {

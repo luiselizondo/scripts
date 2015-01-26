@@ -11,25 +11,17 @@ die () {
 
 # [ "$#" -eq 1 ] || die "first argument is required, $# provided"
 
-function updateHostsFile {
-	echo "$GLUSTER_1_IP    gluster01.$FQDN" >> /etc/hosts
-	echo "$GLUSTER_2_IP    gluster02.$FQDN" >> /etc/hosts
-}
+apt-get update
+apt-get install -y python-software-properties
+add-apt-repository ppa:semiosis/ubuntu-glusterfs-3.4
+apt-get update
+apt-get install -y glusterfs-client
 
-function installAndUpdate {
-	apt-get update
-	apt-get install -y python-software-properties
-	add-apt-repository ppa:semiosis/ubuntu-glusterfs-3.4
-	apt-get update
-	apt-get install -y glusterfs-client
-}
+echo "Configurando archivo /etc/hosts"
+echo "$GLUSTER_1_IP    gluster01.$FQDN" >> /etc/hosts
+echo "$GLUSTER_2_IP    gluster02.$FQDN" >> /etc/hosts
 
-function mountVolume {
-	mkdir /storage-pool
-	mount -t glusterfs gluster01.$FQDN:/volume1 /storage-pool
-	df
-}
-
-updateHostsFile
-installAndUpdate
-mountVolume
+echo "Montando volume"
+mkdir /storage-pool
+mount -t glusterfs gluster01.$FQDN:/volume1 /storage-pool
+df

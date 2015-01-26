@@ -24,4 +24,5 @@ echo "$GLUSTER_2_IP    gluster02.$FQDN" >> /etc/hosts
 echo "Montando volume"
 mkdir /storage-pool
 mount -t glusterfs gluster01.$FQDN:/volume1 /storage-pool
+echo "gluster01.$FQDN:/volume1 /storage-pool glusterfs defaults" >> /etc/fstab
 df

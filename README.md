@@ -30,4 +30,4 @@
 		Correr en el cliente los siguientes dos comandos
 		curl -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/install-glusterfs-client.sh | bash -s
 
-		url -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/configure-glusterfs-client.sh | bash -s IP_DE_NODO_1 IP_DE_NODO_2 FQDN
+		curl -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/configure-glusterfs-client.sh | bash -s IP_DE_NODO_1 IP_DE_NODO_2 FQDN

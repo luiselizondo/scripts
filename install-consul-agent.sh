@@ -13,7 +13,7 @@ die () {
 function installConsulAgent {
 	echo "Installing Consul Agent"
 	
-	docker run --name consul \
+	sleep 2 ; docker run --name consul \
 		-h $HOSTNAME \
 		-p $PRIVATE_IP:8300:8300 \
 		-p $PRIVATE_IP:8301:8301 \
@@ -35,8 +35,9 @@ function installConsulAgent {
 function installRegistrator {
 	echo "Installing Registrator"
 	
-	docker run -d \
+	sleep 2 ; docker run -d \
     -v /var/run/docker.sock:/tmp/docker.sock \
+    --name registrator \
     -h $HOSTNAME progrium/registrator consul://$PRIVATE_IP:8500
 }
 
@@ -45,6 +46,13 @@ function using {
 	echo "Using Join IP: $JOIN_IP"
 }
 
+function configureUpstartJobs {
+	cd /etc/init
+	wget https://raw.githubusercontent.com/luiselizondo/scripts/master/upstart/consul.conf
+	wget https://raw.githubusercontent.com/luiselizondo/scripts/master/upstart/registrator.conf
+}
+
 using
 installConsulAgent
 installRegistrator
+configureUpstartJobs

@@ -1,7 +1,5 @@
 #!/bin/bash
-GLUSTER_1_IP=$1
-GLUSTER_2_IP=$2
-FQDN=$3
+FQDN=$1
 
 die () {
     echo >&2 "$@"
@@ -10,9 +8,6 @@ die () {
 
 # [ "$#" -eq 1 ] || die "first argument is required, $# provided"
 
-echo "Configurando archivo /etc/hosts"
-echo "$GLUSTER_1_IP    gluster01.$FQDN" >> /etc/hosts
-echo "$GLUSTER_2_IP    gluster02.$FQDN" >> /etc/hosts
 
 echo "Montando volume"
 mkdir /storage-pool

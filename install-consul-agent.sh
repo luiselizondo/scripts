@@ -23,7 +23,7 @@ function installConsulAgent {
 		-p $PRIVATE_IP:8400:8400 \
 		-p $PRIVATE_IP:8500:8500 \
 		-p 172.17.42.1:53:53/udp \
-		-d progrium/consul -server -advertise $PRIVATE_IP -join $JOIN_IP
+		-d progrium/consul -advertise $PRIVATE_IP -join $JOIN_IP
 
 	echo "-------------------------------------------------------------"
 	echo " "

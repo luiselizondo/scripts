@@ -19,6 +19,10 @@
 
 		curl -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/install-consul-agent.sh | bash -s IP_DE_LB
 
+### Install Registrator
+
+		curl -sSL https://raw.githubusercontent.com/luiselizondo/scripts/master/install-registrator.sh | bash -s IP_DE_LB
+
 ### Install GlusterFS/NFS
 
 		En cada uno de los servidores correr:
